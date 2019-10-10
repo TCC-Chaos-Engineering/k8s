@@ -1,20 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: calculadora
+  name: buscador
 spec:
-  replicas: 2
   selector:
     matchLabels:
-      app: calculadora
+      app: buscador
   template:
     metadata:
       labels:
-        app: calculadora
+        app: buscador
     spec:
       containers:
-      - name: calculadora
-        image: alessandrocb/calculadora:latest
+      - name: buscador
+        image: alessandrocb/buscador-de-repositorios
         resources:
           limits:
             memory: "128Mi"
