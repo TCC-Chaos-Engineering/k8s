@@ -6,8 +6,8 @@ spec:
   selector:
     app: buscador
   ports:
-  - port: 80
-    targetPort: 3040
+  - port: 3040
+    targetPort: 80
   type: NodePort
   externalIPs:
     - 35.175.213.55
