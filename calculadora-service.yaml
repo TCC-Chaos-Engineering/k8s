@@ -5,8 +5,10 @@ metadata:
 spec:
   selector:
     app: calculadora
-  type: LoadBalancer
   ports:
   - port: 3030
+    protocol: TCP
     targetPort: 80
-    
+  type: NodePort
+  externalIPs:
+    - 172.18.65.53
