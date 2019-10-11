@@ -1,32 +1,34 @@
-{
-    "name": "all-our-microservices-should-be-healthy",
-    "type": "probe",
-    "tolerance": "true",
-    "provider": {
-        "type": "python",
-        "module": "chaosk8s.probes",
-        "func": "microservice_available_and_healthy",
-        "arguments": {
-            "name": "calculadora",
-            "ns": "default"
-        }
-    }
-},
-{
-    "type": "action",
-    "name": "terminate-calculadora-pod",
-    "provider": {
-        "type": "python",
-        "module": "chaosk8s.pod.actions",
-        "func": "terminate_pods",
-        "arguments": {
-            "label_selector": "app=calculadora",
-            "name_pattern": "calculadora-[0-9]$",
-            "rand": true,
-            "ns": "default"
+[
+    {
+        "name": "all-our-microservices-should-be-healthy",
+        "type": "probe",
+        "tolerance": "true",
+        "provider": {
+            "type": "python",
+            "module": "chaosk8s.probes",
+            "func": "microservice_available_and_healthy",
+            "arguments": {
+                "name": "calculadora",
+                "ns": "default"
+            }
         }
     },
-    "pauses": {
-        "after": 5
+    {
+        "type": "action",
+        "name": "terminate-calculadora-pod",
+        "provider": {
+            "type": "python",
+            "module": "chaosk8s.pod.actions",
+            "func": "terminate_pods",
+            "arguments": {
+                "label_selector": "app=calculadora",
+                "name_pattern": "calculadora-[0-9]$",
+                "rand": true,
+                "ns": "default"
+            }
+        },
+        "pauses": {
+            "after": 5
+        }
     }
-}
+]
