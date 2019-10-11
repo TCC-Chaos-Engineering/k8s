@@ -1,34 +1,61 @@
-[
-    {
-        "name": "all-our-microservices-should-be-healthy",
-        "type": "probe",
-        "tolerance": "true",
-        "provider": {
-            "type": "python",
-            "module": "chaosk8s.probes",
-            "func": "microservice_available_and_healthy",
-            "arguments": {
-                "name": "calculadora",
-                "ns": "default"
+{
+    "version": "1.0.0",
+    "title": "Pod should be automatically killed and restarted when unhealthy",
+    "description": "Can we trust Kubernetes to restart our microservice when it detects it is unhealthy?",
+    "tags": [
+        "microservice",
+        "kubernetes",
+        "python"
+    ],
+    "steady-state-hypothesis": {
+        "title": "Services are all available and healthy",
+        "probes": [
+            {
+                "name": "all-our-microservices-should-be-healthy",
+                "type": "probe",
+                "tolerance": "true",
+                "provider": {
+                    "type": "python",
+                    "module": "chaosk8s.probes",
+                    "func": "microservice_available_and_healthy",
+                    "arguments": {
+                        "name": "calculadora",
+                        "ns": "default"
+                    }
+                }
+            },
+            {
+                "type": "probe",
+                "name": "application-must-responde",
+                "tolerance": 200,
+                "provider": {
+                    "type": "http",
+                    "verify-tls": "false",
+                    "url": "http://ec2-34-229-187-13.compute-1.amazonaws.com:3030/"
+                }
             }
-        }
+        ]
     },
-    {
-        "type": "action",
-        "name": "terminate-calculadora-pod",
-        "provider": {
-            "type": "python",
-            "module": "chaosk8s.pod.actions",
-            "func": "terminate_pods",
-            "arguments": {
-                "label_selector": "app=calculadora",
-                "name_pattern": "calculadora-[0-9]$",
-                "rand": true,
-                "ns": "default"
+    "method": [
+        {
+            "type": "action",
+            "name": "terminate-calculadora-pod",
+            "provider": {
+                "type": "python",
+                "module": "chaosk8s.pod.actions",
+                "func": "terminate_pods",
+                "arguments": {
+                    "label_selector": "app=calculadora",
+                    "name_pattern": "calculadora-[0-9]$",
+                    "rand": true,
+                    "ns": "default"
+                }
+            },
+            "pauses": {
+                "after": 5
             }
-        },
-        "pauses": {
-            "after": 5
         }
-    }
-]
+    ],
+    "rollbacks": [
+    ]
+}
