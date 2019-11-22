@@ -31,7 +31,7 @@
                 "provider": {
                     "type": "http",
                     "verify-tls": "false",
-                    "url": "http://ec2-34-229-187-13.compute-1.amazonaws.com:3030/"
+                    "url": "http://localhost:3030/"
                 }
             }
         ]

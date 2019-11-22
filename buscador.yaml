@@ -10,10 +10,11 @@ spec:
     metadata:
       labels:
         app: buscador
+        name: buscador
     spec:
       containers:
       - name: buscador
-        image: alessandrocb/buscador-de-repositorios
+        image: momanhaes/buscador:latest
         resources:
           limits:
             memory: "128Mi"

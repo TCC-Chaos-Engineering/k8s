@@ -4,12 +4,9 @@ metadata:
   name: calculadora-service
 spec:
   selector:
-    app: calculadora
+    name: calculadora
+  type: LoadBalancer
   ports:
-  - port: 3030
-    protocol: TCP
-    targetPort: 80
-  type: NodePort
-  externalIPs:
-    - 35.175.213.55
+    - port: 3040
+      targetPort: 80
 

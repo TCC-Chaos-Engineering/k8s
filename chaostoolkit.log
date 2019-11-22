@@ -1,0 +1,248 @@
+[36m[2019-11-22 14:12:23 DEBUG] [cli:70][39m ###############################################################################
+[36m[2019-11-22 14:12:23 DEBUG] [cli:71][39m Running command 'run'
+[36m[2019-11-22 14:12:23 DEBUG] [cli:75][39m Using settings file 'C:\Users\eduser\.chaostoolkit\settings.yaml'
+[36m[2019-11-22 14:12:24 DEBUG] [settings:24][39m The Chaos Toolkit settings file could not be found at 'C:\Users\eduser\.chaostoolkit\settings.yaml'.
+[36m[2019-11-22 14:12:24 DEBUG] [__init__:355][39m No controls to apply on 'loader'
+[36m[2019-11-22 14:12:24 DEBUG] [__init__:355][39m No controls to apply on 'loader'
+[36m[2019-11-22 14:12:24 DEBUG] [caching:25][39m Building activity cache...
+[36m[2019-11-22 14:12:24 DEBUG] [caching:35][39m Cached 3 activities
+[32m[2019-11-22 14:12:24 INFO] [experiment:54][39m Validating the experiment's syntax
+[36m[2019-11-22 14:12:24 DEBUG] [configuration:36][39m Loading configuration...
+[36m[2019-11-22 14:12:24 DEBUG] [secret:74][39m Loading secrets...
+[36m[2019-11-22 14:12:24 DEBUG] [secret:89][39m Secrets loaded
+[32m[2019-11-22 14:12:26 INFO] [experiment:100][39m Experiment looks valid
+[36m[2019-11-22 14:12:26 DEBUG] [caching:42][39m Clearing activities cache
+[36m[2019-11-22 14:12:26 DEBUG] [caching:25][39m Building activity cache...
+[36m[2019-11-22 14:12:26 DEBUG] [caching:35][39m Cached 3 activities
+[32m[2019-11-22 14:12:26 INFO] [experiment:179][39m Running experiment: Pod should be automatically killed and restarted when unhealthy
+[36m[2019-11-22 14:12:26 DEBUG] [configuration:36][39m Loading configuration...
+[36m[2019-11-22 14:12:26 DEBUG] [secret:74][39m Loading secrets...
+[36m[2019-11-22 14:12:26 DEBUG] [secret:89][39m Secrets loaded
+[36m[2019-11-22 14:12:26 DEBUG] [__init__:39][39m Initializing controls
+[36m[2019-11-22 14:12:26 DEBUG] [__init__:355][39m No controls to apply on 'experiment'
+[32m[2019-11-22 14:12:26 INFO] [hypothesis:184][39m Steady state hypothesis: Services are all available and healthy
+[36m[2019-11-22 14:12:26 DEBUG] [__init__:355][39m No controls to apply on 'hypothesis'
+[36m[2019-11-22 14:12:26 DEBUG] [__init__:355][39m No controls to apply on 'activity'
+[32m[2019-11-22 14:12:26 INFO] [activity:158][39m Probe: all-our-microservices-should-be-healthy
+[36m[2019-11-22 14:12:26 DEBUG] [python:36][39m Activity 'all-our-microservices-should-be-healthy' loaded from 'c:\users\eduser\appdata\local\programs\python\python37\lib\site-packages\chaosk8s\probes.py'
+[36m[2019-11-22 14:12:26 DEBUG] [__init__:69][39m Using Kubernetes context: default
+[36m[2019-11-22 14:12:26 DEBUG] [probes:72][39m Found 0 deployment(s) named 'calculadora' in ns 'default'
+[36m[2019-11-22 14:12:26 DEBUG] [activity:230][39m Activity failed
+    Traceback (most recent call last):
+      File "c:\users\eduser\appdata\local\programs\python\python37\lib\site-packages\chaoslib\provider\python.py", line 55, in run_python_activity
+        return func(**arguments)
+      File "c:\users\eduser\appdata\local\programs\python\python37\lib\site-packages\chaosk8s\probes.py", line 76, in microservice_available_and_healthy
+        "microservice '{name}' was not found".format(name=name))
+    chaoslib.exceptions.ActivityFailed: microservice 'calculadora' was not found
+    
+    During handling of the above exception, another exception occurred:
+    
+    Traceback (most recent call last):
+      File "c:\users\eduser\appdata\local\programs\python\python37\lib\site-packages\chaoslib\activity.py", line 223, in run_activity
+        result = run_python_activity(activity, configuration, secrets)
+      File "c:\users\eduser\appdata\local\programs\python\python37\lib\site-packages\chaoslib\provider\python.py", line 60, in run_python_activity
+        sys.exc_info()[2])
+      File "c:\users\eduser\appdata\local\programs\python\python37\lib\site-packages\chaoslib\provider\python.py", line 55, in run_python_activity
+        return func(**arguments)
+      File "c:\users\eduser\appdata\local\programs\python\python37\lib\site-packages\chaosk8s\probes.py", line 76, in microservice_available_and_healthy
+        "microservice '{name}' was not found".format(name=name))
+    chaoslib.exceptions.ActivityFailed: chaoslib.exceptions.ActivityFailed: microservice 'calculadora' was not found
+[31m[2019-11-22 14:12:26 ERROR] [activity:184][39m   => failed: chaoslib.exceptions.ActivityFailed: microservice 'calculadora' was not found
+[36m[2019-11-22 14:12:26 DEBUG] [__init__:355][39m No controls to apply on 'activity'
+[33m[2019-11-22 14:12:26 WARNING] [hypothesis:201][39m Probe terminated unexpectedly, so its tolerance could not be validated
+[36m[2019-11-22 14:12:26 DEBUG] [__init__:355][39m No controls to apply on 'hypothesis'
+[2019-11-22 14:12:26 CRITICAL] [experiment:215] Steady state probe 'all-our-microservices-should-be-healthy' is not in the given tolerance so failing this experiment
+[32m[2019-11-22 14:12:26 INFO] [experiment:320][39m Let's rollback...
+[36m[2019-11-22 14:12:26 DEBUG] [__init__:355][39m No controls to apply on 'rollback'
+[32m[2019-11-22 14:12:26 INFO] [rollback:25][39m No declared rollbacks, let's move on.
+[36m[2019-11-22 14:12:26 DEBUG] [__init__:355][39m No controls to apply on 'rollback'
+[32m[2019-11-22 14:12:26 INFO] [experiment:270][39m Experiment ended with status: failed
+[36m[2019-11-22 14:12:26 DEBUG] [__init__:355][39m No controls to apply on 'experiment'
+[36m[2019-11-22 14:12:26 DEBUG] [__init__:72][39m Cleaning up controls
+[36m[2019-11-22 14:12:26 DEBUG] [caching:42][39m Clearing activities cache
+[36m[2019-11-22 14:14:36 DEBUG] [cli:70][39m ###############################################################################
+[36m[2019-11-22 14:14:36 DEBUG] [cli:71][39m Running command 'run'
+[36m[2019-11-22 14:14:36 DEBUG] [cli:75][39m Using settings file 'C:\Users\eduser\.chaostoolkit\settings.yaml'
+[36m[2019-11-22 14:14:36 DEBUG] [settings:24][39m The Chaos Toolkit settings file could not be found at 'C:\Users\eduser\.chaostoolkit\settings.yaml'.
+[36m[2019-11-22 14:14:36 DEBUG] [__init__:355][39m No controls to apply on 'loader'
+[36m[2019-11-22 14:14:36 DEBUG] [__init__:355][39m No controls to apply on 'loader'
+[36m[2019-11-22 14:14:36 DEBUG] [caching:25][39m Building activity cache...
+[36m[2019-11-22 14:14:36 DEBUG] [caching:35][39m Cached 3 activities
+[32m[2019-11-22 14:14:36 INFO] [experiment:54][39m Validating the experiment's syntax
+[36m[2019-11-22 14:14:36 DEBUG] [configuration:36][39m Loading configuration...
+[36m[2019-11-22 14:14:36 DEBUG] [secret:74][39m Loading secrets...
+[36m[2019-11-22 14:14:36 DEBUG] [secret:89][39m Secrets loaded
+[32m[2019-11-22 14:14:37 INFO] [experiment:100][39m Experiment looks valid
+[36m[2019-11-22 14:14:37 DEBUG] [caching:42][39m Clearing activities cache
+[36m[2019-11-22 14:14:37 DEBUG] [caching:25][39m Building activity cache...
+[36m[2019-11-22 14:14:37 DEBUG] [caching:35][39m Cached 3 activities
+[32m[2019-11-22 14:14:37 INFO] [experiment:179][39m Running experiment: Pod should be automatically killed and restarted when unhealthy
+[36m[2019-11-22 14:14:37 DEBUG] [configuration:36][39m Loading configuration...
+[36m[2019-11-22 14:14:37 DEBUG] [secret:74][39m Loading secrets...
+[36m[2019-11-22 14:14:37 DEBUG] [secret:89][39m Secrets loaded
+[36m[2019-11-22 14:14:37 DEBUG] [__init__:39][39m Initializing controls
+[36m[2019-11-22 14:14:37 DEBUG] [__init__:355][39m No controls to apply on 'experiment'
+[32m[2019-11-22 14:14:37 INFO] [hypothesis:184][39m Steady state hypothesis: Services are all available and healthy
+[36m[2019-11-22 14:14:37 DEBUG] [__init__:355][39m No controls to apply on 'hypothesis'
+[36m[2019-11-22 14:14:37 DEBUG] [__init__:355][39m No controls to apply on 'activity'
+[32m[2019-11-22 14:14:37 INFO] [activity:158][39m Probe: all-our-microservices-should-be-healthy
+[36m[2019-11-22 14:14:37 DEBUG] [python:36][39m Activity 'all-our-microservices-should-be-healthy' loaded from 'c:\users\eduser\appdata\local\programs\python\python37\lib\site-packages\chaosk8s\probes.py'
+[36m[2019-11-22 14:14:37 DEBUG] [__init__:69][39m Using Kubernetes context: default
+[36m[2019-11-22 14:14:37 DEBUG] [probes:72][39m Found 0 deployment(s) named 'calculadora' in ns 'default'
+[36m[2019-11-22 14:14:37 DEBUG] [activity:230][39m Activity failed
+    Traceback (most recent call last):
+      File "c:\users\eduser\appdata\local\programs\python\python37\lib\site-packages\chaoslib\provider\python.py", line 55, in run_python_activity
+        return func(**arguments)
+      File "c:\users\eduser\appdata\local\programs\python\python37\lib\site-packages\chaosk8s\probes.py", line 76, in microservice_available_and_healthy
+        "microservice '{name}' was not found".format(name=name))
+    chaoslib.exceptions.ActivityFailed: microservice 'calculadora' was not found
+    
+    During handling of the above exception, another exception occurred:
+    
+    Traceback (most recent call last):
+      File "c:\users\eduser\appdata\local\programs\python\python37\lib\site-packages\chaoslib\activity.py", line 223, in run_activity
+        result = run_python_activity(activity, configuration, secrets)
+      File "c:\users\eduser\appdata\local\programs\python\python37\lib\site-packages\chaoslib\provider\python.py", line 60, in run_python_activity
+        sys.exc_info()[2])
+      File "c:\users\eduser\appdata\local\programs\python\python37\lib\site-packages\chaoslib\provider\python.py", line 55, in run_python_activity
+        return func(**arguments)
+      File "c:\users\eduser\appdata\local\programs\python\python37\lib\site-packages\chaosk8s\probes.py", line 76, in microservice_available_and_healthy
+        "microservice '{name}' was not found".format(name=name))
+    chaoslib.exceptions.ActivityFailed: chaoslib.exceptions.ActivityFailed: microservice 'calculadora' was not found
+[31m[2019-11-22 14:14:37 ERROR] [activity:184][39m   => failed: chaoslib.exceptions.ActivityFailed: microservice 'calculadora' was not found
+[36m[2019-11-22 14:14:37 DEBUG] [__init__:355][39m No controls to apply on 'activity'
+[33m[2019-11-22 14:14:37 WARNING] [hypothesis:201][39m Probe terminated unexpectedly, so its tolerance could not be validated
+[36m[2019-11-22 14:14:37 DEBUG] [__init__:355][39m No controls to apply on 'hypothesis'
+[2019-11-22 14:14:37 CRITICAL] [experiment:215] Steady state probe 'all-our-microservices-should-be-healthy' is not in the given tolerance so failing this experiment
+[32m[2019-11-22 14:14:37 INFO] [experiment:320][39m Let's rollback...
+[36m[2019-11-22 14:14:37 DEBUG] [__init__:355][39m No controls to apply on 'rollback'
+[32m[2019-11-22 14:14:37 INFO] [rollback:25][39m No declared rollbacks, let's move on.
+[36m[2019-11-22 14:14:37 DEBUG] [__init__:355][39m No controls to apply on 'rollback'
+[32m[2019-11-22 14:14:37 INFO] [experiment:270][39m Experiment ended with status: failed
+[36m[2019-11-22 14:14:37 DEBUG] [__init__:355][39m No controls to apply on 'experiment'
+[36m[2019-11-22 14:14:37 DEBUG] [__init__:72][39m Cleaning up controls
+[36m[2019-11-22 14:14:37 DEBUG] [caching:42][39m Clearing activities cache
+[36m[2019-11-22 14:21:00 DEBUG] [cli:70][39m ###############################################################################
+[36m[2019-11-22 14:21:00 DEBUG] [cli:71][39m Running command 'run'
+[36m[2019-11-22 14:21:00 DEBUG] [cli:75][39m Using settings file 'C:\Users\eduser\.chaostoolkit\settings.yaml'
+[36m[2019-11-22 14:21:01 DEBUG] [settings:24][39m The Chaos Toolkit settings file could not be found at 'C:\Users\eduser\.chaostoolkit\settings.yaml'.
+[36m[2019-11-22 14:21:01 DEBUG] [__init__:355][39m No controls to apply on 'loader'
+[36m[2019-11-22 14:21:01 DEBUG] [__init__:355][39m No controls to apply on 'loader'
+[36m[2019-11-22 14:21:01 DEBUG] [caching:25][39m Building activity cache...
+[36m[2019-11-22 14:21:01 DEBUG] [caching:35][39m Cached 3 activities
+[32m[2019-11-22 14:21:01 INFO] [experiment:54][39m Validating the experiment's syntax
+[36m[2019-11-22 14:21:01 DEBUG] [configuration:36][39m Loading configuration...
+[36m[2019-11-22 14:21:01 DEBUG] [secret:74][39m Loading secrets...
+[36m[2019-11-22 14:21:01 DEBUG] [secret:89][39m Secrets loaded
+[32m[2019-11-22 14:21:02 INFO] [experiment:100][39m Experiment looks valid
+[36m[2019-11-22 14:21:02 DEBUG] [caching:42][39m Clearing activities cache
+[36m[2019-11-22 14:21:02 DEBUG] [caching:25][39m Building activity cache...
+[36m[2019-11-22 14:21:02 DEBUG] [caching:35][39m Cached 3 activities
+[32m[2019-11-22 14:21:02 INFO] [experiment:179][39m Running experiment: Pod should be automatically killed and restarted when unhealthy
+[36m[2019-11-22 14:21:02 DEBUG] [configuration:36][39m Loading configuration...
+[36m[2019-11-22 14:21:02 DEBUG] [secret:74][39m Loading secrets...
+[36m[2019-11-22 14:21:02 DEBUG] [secret:89][39m Secrets loaded
+[36m[2019-11-22 14:21:02 DEBUG] [__init__:39][39m Initializing controls
+[36m[2019-11-22 14:21:02 DEBUG] [__init__:355][39m No controls to apply on 'experiment'
+[32m[2019-11-22 14:21:02 INFO] [hypothesis:184][39m Steady state hypothesis: Services are all available and healthy
+[36m[2019-11-22 14:21:02 DEBUG] [__init__:355][39m No controls to apply on 'hypothesis'
+[36m[2019-11-22 14:21:02 DEBUG] [__init__:355][39m No controls to apply on 'activity'
+[32m[2019-11-22 14:21:02 INFO] [activity:158][39m Probe: all-our-microservices-should-be-healthy
+[36m[2019-11-22 14:21:02 DEBUG] [python:36][39m Activity 'all-our-microservices-should-be-healthy' loaded from 'c:\users\eduser\appdata\local\programs\python\python37\lib\site-packages\chaosk8s\probes.py'
+[36m[2019-11-22 14:21:02 DEBUG] [__init__:69][39m Using Kubernetes context: default
+[36m[2019-11-22 14:21:02 DEBUG] [probes:72][39m Found 0 deployment(s) named 'calculadora' in ns 'default'
+[36m[2019-11-22 14:21:02 DEBUG] [activity:230][39m Activity failed
+    Traceback (most recent call last):
+      File "c:\users\eduser\appdata\local\programs\python\python37\lib\site-packages\chaoslib\provider\python.py", line 55, in run_python_activity
+        return func(**arguments)
+      File "c:\users\eduser\appdata\local\programs\python\python37\lib\site-packages\chaosk8s\probes.py", line 76, in microservice_available_and_healthy
+        "microservice '{name}' was not found".format(name=name))
+    chaoslib.exceptions.ActivityFailed: microservice 'calculadora' was not found
+    
+    During handling of the above exception, another exception occurred:
+    
+    Traceback (most recent call last):
+      File "c:\users\eduser\appdata\local\programs\python\python37\lib\site-packages\chaoslib\activity.py", line 223, in run_activity
+        result = run_python_activity(activity, configuration, secrets)
+      File "c:\users\eduser\appdata\local\programs\python\python37\lib\site-packages\chaoslib\provider\python.py", line 60, in run_python_activity
+        sys.exc_info()[2])
+      File "c:\users\eduser\appdata\local\programs\python\python37\lib\site-packages\chaoslib\provider\python.py", line 55, in run_python_activity
+        return func(**arguments)
+      File "c:\users\eduser\appdata\local\programs\python\python37\lib\site-packages\chaosk8s\probes.py", line 76, in microservice_available_and_healthy
+        "microservice '{name}' was not found".format(name=name))
+    chaoslib.exceptions.ActivityFailed: chaoslib.exceptions.ActivityFailed: microservice 'calculadora' was not found
+[31m[2019-11-22 14:21:02 ERROR] [activity:184][39m   => failed: chaoslib.exceptions.ActivityFailed: microservice 'calculadora' was not found
+[36m[2019-11-22 14:21:02 DEBUG] [__init__:355][39m No controls to apply on 'activity'
+[33m[2019-11-22 14:21:02 WARNING] [hypothesis:201][39m Probe terminated unexpectedly, so its tolerance could not be validated
+[36m[2019-11-22 14:21:02 DEBUG] [__init__:355][39m No controls to apply on 'hypothesis'
+[2019-11-22 14:21:02 CRITICAL] [experiment:215] Steady state probe 'all-our-microservices-should-be-healthy' is not in the given tolerance so failing this experiment
+[32m[2019-11-22 14:21:02 INFO] [experiment:320][39m Let's rollback...
+[36m[2019-11-22 14:21:02 DEBUG] [__init__:355][39m No controls to apply on 'rollback'
+[32m[2019-11-22 14:21:02 INFO] [rollback:25][39m No declared rollbacks, let's move on.
+[36m[2019-11-22 14:21:02 DEBUG] [__init__:355][39m No controls to apply on 'rollback'
+[32m[2019-11-22 14:21:02 INFO] [experiment:270][39m Experiment ended with status: failed
+[36m[2019-11-22 14:21:02 DEBUG] [__init__:355][39m No controls to apply on 'experiment'
+[36m[2019-11-22 14:21:02 DEBUG] [__init__:72][39m Cleaning up controls
+[36m[2019-11-22 14:21:02 DEBUG] [caching:42][39m Clearing activities cache
+[36m[2019-11-22 14:22:43 DEBUG] [cli:70][39m ###############################################################################
+[36m[2019-11-22 14:22:43 DEBUG] [cli:71][39m Running command 'run'
+[36m[2019-11-22 14:22:43 DEBUG] [cli:75][39m Using settings file 'C:\Users\eduser\.chaostoolkit\settings.yaml'
+[36m[2019-11-22 14:22:43 DEBUG] [settings:24][39m The Chaos Toolkit settings file could not be found at 'C:\Users\eduser\.chaostoolkit\settings.yaml'.
+[36m[2019-11-22 14:22:43 DEBUG] [__init__:355][39m No controls to apply on 'loader'
+[36m[2019-11-22 14:22:43 DEBUG] [__init__:355][39m No controls to apply on 'loader'
+[36m[2019-11-22 14:22:43 DEBUG] [caching:25][39m Building activity cache...
+[36m[2019-11-22 14:22:43 DEBUG] [caching:35][39m Cached 3 activities
+[32m[2019-11-22 14:22:43 INFO] [experiment:54][39m Validating the experiment's syntax
+[36m[2019-11-22 14:22:43 DEBUG] [configuration:36][39m Loading configuration...
+[36m[2019-11-22 14:22:43 DEBUG] [secret:74][39m Loading secrets...
+[36m[2019-11-22 14:22:43 DEBUG] [secret:89][39m Secrets loaded
+[32m[2019-11-22 14:22:44 INFO] [experiment:100][39m Experiment looks valid
+[36m[2019-11-22 14:22:44 DEBUG] [caching:42][39m Clearing activities cache
+[36m[2019-11-22 14:22:44 DEBUG] [caching:25][39m Building activity cache...
+[36m[2019-11-22 14:22:44 DEBUG] [caching:35][39m Cached 3 activities
+[32m[2019-11-22 14:22:44 INFO] [experiment:179][39m Running experiment: Pod should be automatically killed and restarted when unhealthy
+[36m[2019-11-22 14:22:44 DEBUG] [configuration:36][39m Loading configuration...
+[36m[2019-11-22 14:22:44 DEBUG] [secret:74][39m Loading secrets...
+[36m[2019-11-22 14:22:44 DEBUG] [secret:89][39m Secrets loaded
+[36m[2019-11-22 14:22:44 DEBUG] [__init__:39][39m Initializing controls
+[36m[2019-11-22 14:22:44 DEBUG] [__init__:355][39m No controls to apply on 'experiment'
+[32m[2019-11-22 14:22:44 INFO] [hypothesis:184][39m Steady state hypothesis: Services are all available and healthy
+[36m[2019-11-22 14:22:44 DEBUG] [__init__:355][39m No controls to apply on 'hypothesis'
+[36m[2019-11-22 14:22:44 DEBUG] [__init__:355][39m No controls to apply on 'activity'
+[32m[2019-11-22 14:22:44 INFO] [activity:158][39m Probe: all-our-microservices-should-be-healthy
+[36m[2019-11-22 14:22:44 DEBUG] [python:36][39m Activity 'all-our-microservices-should-be-healthy' loaded from 'c:\users\eduser\appdata\local\programs\python\python37\lib\site-packages\chaosk8s\probes.py'
+[36m[2019-11-22 14:22:44 DEBUG] [__init__:69][39m Using Kubernetes context: default
+[36m[2019-11-22 14:22:44 DEBUG] [probes:72][39m Found 0 deployment(s) named 'calculadora' in ns 'default'
+[36m[2019-11-22 14:22:44 DEBUG] [activity:230][39m Activity failed
+    Traceback (most recent call last):
+      File "c:\users\eduser\appdata\local\programs\python\python37\lib\site-packages\chaoslib\provider\python.py", line 55, in run_python_activity
+        return func(**arguments)
+      File "c:\users\eduser\appdata\local\programs\python\python37\lib\site-packages\chaosk8s\probes.py", line 76, in microservice_available_and_healthy
+        "microservice '{name}' was not found".format(name=name))
+    chaoslib.exceptions.ActivityFailed: microservice 'calculadora' was not found
+    
+    During handling of the above exception, another exception occurred:
+    
+    Traceback (most recent call last):
+      File "c:\users\eduser\appdata\local\programs\python\python37\lib\site-packages\chaoslib\activity.py", line 223, in run_activity
+        result = run_python_activity(activity, configuration, secrets)
+      File "c:\users\eduser\appdata\local\programs\python\python37\lib\site-packages\chaoslib\provider\python.py", line 60, in run_python_activity
+        sys.exc_info()[2])
+      File "c:\users\eduser\appdata\local\programs\python\python37\lib\site-packages\chaoslib\provider\python.py", line 55, in run_python_activity
+        return func(**arguments)
+      File "c:\users\eduser\appdata\local\programs\python\python37\lib\site-packages\chaosk8s\probes.py", line 76, in microservice_available_and_healthy
+        "microservice '{name}' was not found".format(name=name))
+    chaoslib.exceptions.ActivityFailed: chaoslib.exceptions.ActivityFailed: microservice 'calculadora' was not found
+[31m[2019-11-22 14:22:44 ERROR] [activity:184][39m   => failed: chaoslib.exceptions.ActivityFailed: microservice 'calculadora' was not found
+[36m[2019-11-22 14:22:44 DEBUG] [__init__:355][39m No controls to apply on 'activity'
+[33m[2019-11-22 14:22:44 WARNING] [hypothesis:201][39m Probe terminated unexpectedly, so its tolerance could not be validated
+[36m[2019-11-22 14:22:44 DEBUG] [__init__:355][39m No controls to apply on 'hypothesis'
+[2019-11-22 14:22:44 CRITICAL] [experiment:215] Steady state probe 'all-our-microservices-should-be-healthy' is not in the given tolerance so failing this experiment
+[32m[2019-11-22 14:22:44 INFO] [experiment:320][39m Let's rollback...
+[36m[2019-11-22 14:22:44 DEBUG] [__init__:355][39m No controls to apply on 'rollback'
+[32m[2019-11-22 14:22:44 INFO] [rollback:25][39m No declared rollbacks, let's move on.
+[36m[2019-11-22 14:22:44 DEBUG] [__init__:355][39m No controls to apply on 'rollback'
+[32m[2019-11-22 14:22:44 INFO] [experiment:270][39m Experiment ended with status: failed
+[36m[2019-11-22 14:22:44 DEBUG] [__init__:355][39m No controls to apply on 'experiment'
+[36m[2019-11-22 14:22:44 DEBUG] [__init__:72][39m Cleaning up controls
+[36m[2019-11-22 14:22:44 DEBUG] [caching:42][39m Clearing activities cache

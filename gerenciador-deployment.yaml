@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gerenciador
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gerenciador
+  template:
+    metadata:
+      labels:
+        app: gerenciador
+    spec:
+      containers:
+      - name: gerenciador
+        image: momanhaes/gerenciador:latest
+        ports:
+        - containerPort: 80

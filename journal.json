@@ -1,0 +1,111 @@
+{
+  "chaoslib-version": "1.7.1",
+  "platform": "Windows-10-10.0.18362-SP0",
+  "node": "ED00060",
+  "experiment": {
+    "version": "1.0.0",
+    "title": "Pod should be automatically killed and restarted when unhealthy",
+    "description": "Can we trust Kubernetes to restart our microservice when it detects it is unhealthy?",
+    "tags": [
+      "microservice",
+      "kubernetes",
+      "python"
+    ],
+    "steady-state-hypothesis": {
+      "title": "Services are all available and healthy",
+      "probes": [
+        {
+          "name": "all-our-microservices-should-be-healthy",
+          "type": "probe",
+          "tolerance": "true",
+          "provider": {
+            "type": "python",
+            "module": "chaosk8s.probes",
+            "func": "microservice_available_and_healthy",
+            "arguments": {
+              "name": "calculadora",
+              "ns": "default"
+            }
+          }
+        },
+        {
+          "type": "probe",
+          "name": "application-must-responde",
+          "tolerance": 200,
+          "provider": {
+            "type": "http",
+            "verify-tls": "false",
+            "url": "http://localhost:3030/"
+          }
+        }
+      ]
+    },
+    "method": [
+      {
+        "type": "action",
+        "name": "terminate-calculadora-pod",
+        "provider": {
+          "type": "python",
+          "module": "chaosk8s.pod.actions",
+          "func": "terminate_pods",
+          "arguments": {
+            "label_selector": "app=calculadora",
+            "name_pattern": "calculadora-[0-9]$",
+            "rand": true,
+            "ns": "default"
+          }
+        },
+        "pauses": {
+          "after": 5
+        }
+      }
+    ],
+    "rollbacks": [],
+    "dry": false
+  },
+  "start": "2019-11-22T17:22:44.440393",
+  "status": "failed",
+  "deviated": false,
+  "steady_states": {
+    "before": {
+      "steady_state_met": false,
+      "probes": [
+        {
+          "activity": {
+            "name": "all-our-microservices-should-be-healthy",
+            "type": "probe",
+            "tolerance": "true",
+            "provider": {
+              "type": "python",
+              "module": "chaosk8s.probes",
+              "func": "microservice_available_and_healthy",
+              "arguments": {
+                "name": "calculadora",
+                "ns": "default"
+              }
+            }
+          },
+          "output": null,
+          "status": "failed",
+          "exception": [
+            "Traceback (most recent call last):\n",
+            "  File \"c:\\users\\eduser\\appdata\\local\\programs\\python\\python37\\lib\\site-packages\\chaoslib\\provider\\python.py\", line 55, in run_python_activity\n    return func(**arguments)\n",
+            "  File \"c:\\users\\eduser\\appdata\\local\\programs\\python\\python37\\lib\\site-packages\\chaosk8s\\probes.py\", line 76, in microservice_available_and_healthy\n    \"microservice '{name}' was not found\".format(name=name))\n",
+            "chaoslib.exceptions.ActivityFailed: microservice 'calculadora' was not found\n",
+            "\nDuring handling of the above exception, another exception occurred:\n\n",
+            "chaoslib.exceptions.ActivityFailed: chaoslib.exceptions.ActivityFailed: microservice 'calculadora' was not found\n"
+          ],
+          "start": "2019-11-22T17:22:44.443395",
+          "end": "2019-11-22T17:22:44.476390",
+          "duration": 0.032995,
+          "tolerance_met": false
+        }
+      ]
+    },
+    "after": null
+  },
+  "run": [],
+  "rollbacks": [],
+  "end": "2019-11-22T17:22:44.482393",
+  "duration": 0.04200029373168945
+}
