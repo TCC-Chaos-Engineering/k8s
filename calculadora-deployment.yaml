@@ -3,12 +3,13 @@ kind: Deployment
 metadata:
   name: calculadora
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       name: calculadora
   template:
     metadata:
+      name: calculadora
       labels:
         app: calculadora
         name: calculadora

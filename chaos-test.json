@@ -11,27 +11,13 @@
         "title": "Services are all available and healthy",
         "probes": [
             {
-                "name": "all-our-microservices-should-be-healthy",
                 "type": "probe",
-                "tolerance": "true",
-                "provider": {
-                    "type": "python",
-                    "module": "chaosk8s.probes",
-                    "func": "microservice_available_and_healthy",
-                    "arguments": {
-                        "name": "calculadora",
-                        "ns": "default"
-                    }
-                }
-            },
-            {
-                "type": "probe",
-                "name": "application-must-responde",
+                "name": "application-must-respond",
                 "tolerance": 200,
                 "provider": {
                     "type": "http",
                     "verify-tls": "false",
-                    "url": "http://localhost:3030/"
+                    "url": "http://a254632851d1811ea9a4b022d8182669-394630642.sa-east-1.elb.amazonaws.com:3040/"
                 }
             }
         ]
@@ -46,7 +32,7 @@
                 "func": "terminate_pods",
                 "arguments": {
                     "label_selector": "app=calculadora",
-                    "name_pattern": "calculadora-[0-9]$",
+                    "name_pattern": "calculadora-\\w*-\\w*",
                     "rand": true,
                     "ns": "default"
                 }
