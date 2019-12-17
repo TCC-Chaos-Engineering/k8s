@@ -1,47 +1,42 @@
 {
-    "version": "1.0.0",
-    "title": "Pod should be automatically killed and restarted when unhealthy",
-    "description": "Can we trust Kubernetes to restart our microservice when it detects it is unhealthy?",
-    "tags": [
-        "microservice",
-        "kubernetes",
-        "python"
-    ],
-    "steady-state-hypothesis": {
-        "title": "Services are all available and healthy",
-        "probes": [
-            {
-                "type": "probe",
-                "name": "application-must-respond",
-                "tolerance": 200,
-                "provider": {
-                    "type": "http",
-                    "verify-tls": "false",
-                    "url": "http://a254632851d1811ea9a4b022d8182669-394630642.sa-east-1.elb.amazonaws.com:3040/"
-                }
-            }
-        ]
-    },
-    "method": [
-        {
-            "type": "action",
-            "name": "terminate-calculadora-pod",
-            "provider": {
-                "type": "python",
-                "module": "chaosk8s.pod.actions",
-                "func": "terminate_pods",
-                "arguments": {
-                    "label_selector": "app=calculadora",
-                    "name_pattern": "calculadora-\\w*-\\w*",
-                    "rand": true,
-                    "ns": "default"
-                }
-            },
-            "pauses": {
-                "after": 5
-            }
+  "version": "1.0.0",
+  "title": "Pod should be automatically killed and restarted when unhealthy",
+  "description": "Can we trust Kubernetes to restart our microservice when it detects it is unhealthy?",
+  "tags": ["microservice", "kubernetes", "python"],
+  "steady-state-hypothesis": {
+    "title": "Services are all available and healthy",
+    "probes": [
+      {
+        "type": "probe",
+        "name": "application-must-respond",
+        "tolerance": 200,
+        "provider": {
+          "type": "http",
+          "verify-tls": "false",
+          "url": "http://a254632851d1811ea9a4b022d8182669-394630642.sa-east-1.elb.amazonaws.com:3040/"
         }
-    ],
-    "rollbacks": [
+      }
     ]
+  },
+  "method": [
+    {
+      "type": "action",
+      "name": "terminate-calculadora-pod",
+      "provider": {
+        "type": "python",
+        "module": "chaosk8s.pod.actions",
+        "func": "terminate_pods",
+        "arguments": {
+          "label_selector": "name=calculadora",
+          "name_pattern": "calculadora-\\w*-\\w*",
+          "rand": true,
+          "ns": "default"
+        }
+      },
+      "pauses": {
+        "after": 5
+      }
+    }
+  ],
+  "rollbacks": []
 }

@@ -1,10 +1,10 @@
 {
   "chaoslib-version": "1.7.1",
   "platform": "Windows-10-10.0.18362-SP0",
-  "node": "ED00060",
+  "node": "Matheus",
   "experiment": {
     "version": "1.0.0",
-    "title": "Pod should be automatically killed and restarted when unhealthy",
+    "title": "Matar o pod e reiniciá-lo automaticamente",
     "description": "Can we trust Kubernetes to restart our microservice when it detects it is unhealthy?",
     "tags": [
       "microservice",
@@ -15,27 +15,13 @@
       "title": "Services are all available and healthy",
       "probes": [
         {
-          "name": "all-our-microservices-should-be-healthy",
           "type": "probe",
-          "tolerance": "true",
-          "provider": {
-            "type": "python",
-            "module": "chaosk8s.probes",
-            "func": "microservice_available_and_healthy",
-            "arguments": {
-              "name": "calculadora",
-              "ns": "default"
-            }
-          }
-        },
-        {
-          "type": "probe",
-          "name": "application-must-responde",
+          "name": "application-must-respond",
           "tolerance": 200,
           "provider": {
             "type": "http",
             "verify-tls": "false",
-            "url": "http://localhost:3030/"
+            "url": "http://a27c221f71d2511ea96210aba1264c59-948384543.sa-east-1.elb.amazonaws.com:3040/"
           }
         }
       ]
@@ -49,8 +35,8 @@
           "module": "chaosk8s.pod.actions",
           "func": "terminate_pods",
           "arguments": {
-            "label_selector": "app=calculadora",
-            "name_pattern": "calculadora-[0-9]$",
+            "label_selector": "name=calculadora",
+            "name_pattern": "calculadora-\\w*-\\w*",
             "rand": true,
             "ns": "default"
           }
@@ -63,49 +49,111 @@
     "rollbacks": [],
     "dry": false
   },
-  "start": "2019-11-22T17:22:44.440393",
-  "status": "failed",
+  "start": "2019-12-12T22:53:37.882934",
+  "status": "completed",
   "deviated": false,
   "steady_states": {
     "before": {
-      "steady_state_met": false,
+      "steady_state_met": true,
       "probes": [
         {
           "activity": {
-            "name": "all-our-microservices-should-be-healthy",
             "type": "probe",
-            "tolerance": "true",
+            "name": "application-must-respond",
+            "tolerance": 200,
             "provider": {
-              "type": "python",
-              "module": "chaosk8s.probes",
-              "func": "microservice_available_and_healthy",
-              "arguments": {
-                "name": "calculadora",
-                "ns": "default"
-              }
+              "type": "http",
+              "verify-tls": "false",
+              "url": "http://a27c221f71d2511ea96210aba1264c59-948384543.sa-east-1.elb.amazonaws.com:3040/"
             }
           },
-          "output": null,
-          "status": "failed",
-          "exception": [
-            "Traceback (most recent call last):\n",
-            "  File \"c:\\users\\eduser\\appdata\\local\\programs\\python\\python37\\lib\\site-packages\\chaoslib\\provider\\python.py\", line 55, in run_python_activity\n    return func(**arguments)\n",
-            "  File \"c:\\users\\eduser\\appdata\\local\\programs\\python\\python37\\lib\\site-packages\\chaosk8s\\probes.py\", line 76, in microservice_available_and_healthy\n    \"microservice '{name}' was not found\".format(name=name))\n",
-            "chaoslib.exceptions.ActivityFailed: microservice 'calculadora' was not found\n",
-            "\nDuring handling of the above exception, another exception occurred:\n\n",
-            "chaoslib.exceptions.ActivityFailed: chaoslib.exceptions.ActivityFailed: microservice 'calculadora' was not found\n"
-          ],
-          "start": "2019-11-22T17:22:44.443395",
-          "end": "2019-11-22T17:22:44.476390",
-          "duration": 0.032995,
-          "tolerance_met": false
+          "output": {
+            "status": 200,
+            "headers": {
+              "Server": "nginx/1.17.6",
+              "Date": "Thu, 12 Dec 2019 22:53:37 GMT",
+              "Content-Type": "text/html",
+              "Content-Length": "860",
+              "Last-Modified": "Fri, 22 Nov 2019 16:06:44 GMT",
+              "Connection": "keep-alive",
+              "ETag": "\"5dd80794-35c\"",
+              "Accept-Ranges": "bytes"
+            },
+            "body": "<!doctype html>\r\n<html lang=\"en\">\r\n\r\n<head>\r\n    <meta charset=\"utf-8\">\r\n    <title>Calculadora</title>\r\n    <base href=\"/\">\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n    <link rel=\"icon\" type=\"image/x-icon\" href=\"favicon.ico\">\r\n</head>\r\n\r\n<body>\r\n    <app-root></app-root>\r\n<script src=\"polyfills-es5.js\" nomodule defer></script><script src=\"polyfills-es2015.js\" type=\"module\"></script><script src=\"styles-es2015.js\" type=\"module\"></script><script src=\"styles-es5.js\" nomodule defer></script><script src=\"runtime-es2015.js\" type=\"module\"></script><script src=\"vendor-es2015.js\" type=\"module\"></script><script src=\"main-es2015.js\" type=\"module\"></script><script src=\"runtime-es5.js\" nomodule defer></script><script src=\"vendor-es5.js\" nomodule defer></script><script src=\"main-es5.js\" nomodule defer></script></body>\r\n\r\n</html>"
+          },
+          "status": "succeeded",
+          "start": "2019-12-12T22:53:37.883934",
+          "end": "2019-12-12T22:53:38.048934",
+          "duration": 0.165,
+          "tolerance_met": true
         }
       ]
     },
-    "after": null
+    "after": {
+      "steady_state_met": true,
+      "probes": [
+        {
+          "activity": {
+            "type": "probe",
+            "name": "application-must-respond",
+            "tolerance": 200,
+            "provider": {
+              "type": "http",
+              "verify-tls": "false",
+              "url": "http://a27c221f71d2511ea96210aba1264c59-948384543.sa-east-1.elb.amazonaws.com:3040/"
+            }
+          },
+          "output": {
+            "status": 200,
+            "headers": {
+              "Server": "nginx/1.17.6",
+              "Date": "Thu, 12 Dec 2019 22:53:44 GMT",
+              "Content-Type": "text/html",
+              "Content-Length": "860",
+              "Last-Modified": "Fri, 22 Nov 2019 16:06:44 GMT",
+              "Connection": "keep-alive",
+              "ETag": "\"5dd80794-35c\"",
+              "Accept-Ranges": "bytes"
+            },
+            "body": "<!doctype html>\r\n<html lang=\"en\">\r\n\r\n<head>\r\n    <meta charset=\"utf-8\">\r\n    <title>Calculadora</title>\r\n    <base href=\"/\">\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1\">\r\n    <link rel=\"icon\" type=\"image/x-icon\" href=\"favicon.ico\">\r\n</head>\r\n\r\n<body>\r\n    <app-root></app-root>\r\n<script src=\"polyfills-es5.js\" nomodule defer></script><script src=\"polyfills-es2015.js\" type=\"module\"></script><script src=\"styles-es2015.js\" type=\"module\"></script><script src=\"styles-es5.js\" nomodule defer></script><script src=\"runtime-es2015.js\" type=\"module\"></script><script src=\"vendor-es2015.js\" type=\"module\"></script><script src=\"main-es2015.js\" type=\"module\"></script><script src=\"runtime-es5.js\" nomodule defer></script><script src=\"vendor-es5.js\" nomodule defer></script><script src=\"main-es5.js\" nomodule defer></script></body>\r\n\r\n</html>"
+          },
+          "status": "succeeded",
+          "start": "2019-12-12T22:53:45.140838",
+          "end": "2019-12-12T22:53:45.168839",
+          "duration": 0.028001,
+          "tolerance_met": true
+        }
+      ]
+    }
   },
-  "run": [],
+  "run": [
+    {
+      "activity": {
+        "type": "action",
+        "name": "terminate-calculadora-pod",
+        "provider": {
+          "type": "python",
+          "module": "chaosk8s.pod.actions",
+          "func": "terminate_pods",
+          "arguments": {
+            "label_selector": "name=calculadora",
+            "name_pattern": "calculadora-\\w*-\\w*",
+            "rand": true,
+            "ns": "default"
+          }
+        },
+        "pauses": {
+          "after": 5
+        }
+      },
+      "output": null,
+      "status": "succeeded",
+      "start": "2019-12-12T22:53:38.049936",
+      "end": "2019-12-12T22:53:40.140452",
+      "duration": 2.090516
+    }
+  ],
   "rollbacks": [],
-  "end": "2019-11-22T17:22:44.482393",
-  "duration": 0.04200029373168945
+  "end": "2019-12-12T22:53:45.170839",
+  "duration": 7.287905216217041
 }

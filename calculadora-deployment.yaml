@@ -3,7 +3,6 @@ kind: Deployment
 metadata:
   name: calculadora
 spec:
-  replicas: 3
   selector:
     matchLabels:
       name: calculadora

@@ -1,0 +1,28 @@
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSUN5RENDQWJDZ0F3SUJBZ0lCQURBTkJna3Foa2lHOXcwQkFRc0ZBREFWTVJNd0VRWURWUVFERXdwcmRXSmwKY201bGRHVnpNQjRYRFRFNU1USXhNakU0TkRZd01Wb1hEVEk1TVRJd09URTRORFl3TVZvd0ZURVRNQkVHQTFVRQpBeE1LYTNWaVpYSnVaWFJsY3pDQ0FTSXdEUVlKS29aSWh2Y05BUUVCQlFBRGdnRVBBRENDQVFvQ2dnRUJBTzlICnRUTW5mUHdvbTZ1ZXFDeHVkK2N1NEtySUpxMmIyWHNBSDcvV2lKdThNNk1GZmd1amFZOFJjUVVLTUVOcW9mVDgKbU5QN2t4eFo3b2ZJUXg2ajc3dXlVWHlPWFZRekxhdm9wQWVqNldkNDRwWUtTOUZLR1NXY2g2TS9tMktsK2p4cwpESFZmOWwxbWMxN3IvdHVxQjlEOW5kUDkzUkxValRzUTF2czBUdm5vd2dsRkZ1NDhkMFg2M2JFcUE5SXQ4VS8xCkFmWjBlRHkwUHQycm9GUkhHWUN6eWQyRmM5WkErNVBVZE0vbllJR0RmZDMwb1kydXdVZFkveFRhMmwwWGZsWlYKZFJCUVpZWThDcTkvMTI4NlE4aWp3TnBpY1I0eHpsNzhWSno4b0JyVXYxUFh6aGlOU05Pb1lMZ1lPbEZ3eU9yWgpUekdyT200Q0ZseU9UeHhCZjFNQ0F3RUFBYU1qTUNFd0RnWURWUjBQQVFIL0JBUURBZ0trTUE4R0ExVWRFd0VCCi93UUZNQU1CQWY4d0RRWUpLb1pJaHZjTkFRRUxCUUFEZ2dFQkFDRDNrZzE5SXh5SXZzTm9jNndqa2orekJpeDIKbXdkN293MzI5TzUwRDJoR1JGZWxwMitubTc5NU1GYXh3cUtkaE9Ic1VYV05XNnEyRDk2b2szUHJPTXNMeHF1OQpqVmJOWTVaWDJ6ZDVYYVFCZHZLc2wzNFpYd1VvWTVUeFNuSUl3TU9VQlcrVVUrR0tORDV4M1NNenQ5dGJVcWRMCmU2ZCtHUGZvMzliT2tFU2pWUFliK3lxS1JnQmJ0TnpkeVZ6UEFLdTRsWWYzMDZCSUluN1NKNVl1RkhpSVVPVXoKVE52ZlhBL2hpaWprZ0pGcTFGdk95b3BjbnJ2VVF1S1NsdWVkaHREeHE0YmI0cHYxUzdXR2hweG9sSFRPMWVjeQpyZnFZalZzeXNvK3BCZFgxaU9wdTA1b0taNlIzTEt2S3Z2aUFEWHY1KzE1eGVDWkQ5TVJ5eFZWRFpwST0KLS0tLS1FTkQgQ0VSVElGSUNBVEUtLS0tLQo=
+    server: https://48BBC5794651B5DD852396A278ED6092.gr7.sa-east-1.eks.amazonaws.com
+  name: tcc.sa-east-1.eksctl.io
+contexts:
+- context:
+    cluster: tcc.sa-east-1.eksctl.io
+    user: iam-root-account@tcc.sa-east-1.eksctl.io
+  name: iam-root-account@tcc.sa-east-1.eksctl.io
+current-context: iam-root-account@tcc.sa-east-1.eksctl.io
+kind: Config
+preferences: {}
+users:
+- name: iam-root-account@tcc.sa-east-1.eksctl.io
+  user:
+    exec:
+      apiVersion: client.authentication.k8s.io/v1alpha1
+      args:
+      - eks
+      - get-token
+      - --cluster-name
+      - tcc
+      - --region
+      - sa-east-1
+      command: aws
+      env: null
