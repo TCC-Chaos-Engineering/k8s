@@ -1,0 +1,32 @@
+{
+    "title": "Can our system handle a node being CPU-busy?",
+    "description": "CPU-usage may be impactful on our response time",
+    "secrets": {
+        "gremlin": {
+            "email": "alessandro.caetanob@gmail.com",
+            "password": "fM[IE5OwtnvX",
+            "org_name": "Teste123"
+        }
+    },
+    "method": [
+        {
+            "name": "attack-on-cpu",
+            "type": "action",
+            "background": true,
+            "provider": {
+                "type": "python",
+                "module": "chaosgremlin.actions",
+                "func": "attack",
+                "secrets": ["gremlin"],
+                "arguments": {
+                    "command": {
+                        "type": "cpu"
+                    },
+                    "target": {
+                        "type": "Random"
+                    }
+                }
+            }
+        }
+    ]
+}
